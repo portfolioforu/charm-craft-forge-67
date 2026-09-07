@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CompetencesRouteImport } from './routes/competences'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ParcoursRouteImport } from './routes/parcours'
+import { Route as ProjetsScriptBackupRouteImport } from './routes/projets/script-backup'
+import { Route as ProjetsServeurWebRouteImport } from './routes/projets/serveur-web'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompetencesRoute = CompetencesRouteImport.update({
+  id: '/competences',
+  path: '/competences',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ParcoursRoute = ParcoursRouteImport.update({
+  id: '/parcours',
+  path: '/parcours',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjetsScriptBackupRoute = ProjetsScriptBackupRouteImport.update({
+  id: '/projets/script-backup',
+  path: '/projets/script-backup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjetsServeurWebRoute = ProjetsServeurWebRouteImport.update({
+  id: '/projets/serveur-web',
+  path: '/projets/serveur-web',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/competences': typeof CompetencesRoute
+  '/contact': typeof ContactRoute
+  '/parcours': typeof ParcoursRoute
+  '/projets/script-backup': typeof ProjetsScriptBackupRoute
+  '/projets/serveur-web': typeof ProjetsServeurWebRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/competences': typeof CompetencesRoute
+  '/contact': typeof ContactRoute
+  '/parcours': typeof ParcoursRoute
+  '/projets/script-backup': typeof ProjetsScriptBackupRoute
+  '/projets/serveur-web': typeof ProjetsServeurWebRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/competences': typeof CompetencesRoute
+  '/contact': typeof ContactRoute
+  '/parcours': typeof ParcoursRoute
+  '/projets/script-backup': typeof ProjetsScriptBackupRoute
+  '/projets/serveur-web': typeof ProjetsServeurWebRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/competences'
+    | '/contact'
+    | '/parcours'
+    | '/projets/script-backup'
+    | '/projets/serveur-web'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/competences'
+    | '/contact'
+    | '/parcours'
+    | '/projets/script-backup'
+    | '/projets/serveur-web'
+  id:
+    | '__root__'
+    | '/'
+    | '/competences'
+    | '/contact'
+    | '/parcours'
+    | '/projets/script-backup'
+    | '/projets/serveur-web'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompetencesRoute: typeof CompetencesRoute
+  ContactRoute: typeof ContactRoute
+  ParcoursRoute: typeof ParcoursRoute
+  ProjetsScriptBackupRoute: typeof ProjetsScriptBackupRoute
+  ProjetsServeurWebRoute: typeof ProjetsServeurWebRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/competences': {
+      id: '/competences'
+      path: '/competences'
+      fullPath: '/competences'
+      preLoaderRoute: typeof CompetencesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/parcours': {
+      id: '/parcours'
+      path: '/parcours'
+      fullPath: '/parcours'
+      preLoaderRoute: typeof ParcoursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projets/script-backup': {
+      id: '/projets/script-backup'
+      path: '/projets/script-backup'
+      fullPath: '/projets/script-backup'
+      preLoaderRoute: typeof ProjetsScriptBackupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projets/serveur-web': {
+      id: '/projets/serveur-web'
+      path: '/projets/serveur-web'
+      fullPath: '/projets/serveur-web'
+      preLoaderRoute: typeof ProjetsServeurWebRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompetencesRoute: CompetencesRoute,
+  ContactRoute: ContactRoute,
+  ParcoursRoute: ParcoursRoute,
+  ProjetsScriptBackupRoute: ProjetsScriptBackupRoute,
+  ProjetsServeurWebRoute: ProjetsServeurWebRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
